@@ -1,5 +1,5 @@
 {
-  "name": "name_generator",
+  "name": "domain-generator-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
