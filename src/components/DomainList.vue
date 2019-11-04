@@ -38,8 +38,7 @@
 </template>
 
 <script>
-import "bootstrap/dist/css/bootstrap.css";
-import "font-awesome/css/font-awesome.css";
+import axios from "axios/dist/axios";
 import ItemList from "./ItemList";
 
 export default {
@@ -49,8 +48,8 @@ export default {
   },
   data() {
     return {
-      prefixes: ["Air", "Jet", "Flight"],
-      sufixes: ["Hub", "Station", "Mart"],
+      prefixes: [],
+      sufixes: [],
       domains: []
     };
   },
@@ -79,6 +78,27 @@ export default {
         }
       }
     }
+  },
+  created() {
+    axios({
+      url: "http://localhost:4000",
+      method: "post",
+      data: {
+        query: `{
+          prefixes: items(type: "prefix") {
+            id
+            type
+            description
+          }
+          sufixes: items(type: "sufix") {
+            description
+          }
+        }`
+      }
+    }).then(({ data: { data: { prefixes, sufixes } } }) => {
+      this.prefixes = prefixes.map(p => p.description);
+      this.sufixes = sufixes.map(s => s.description);
+    });
   }
 };
 </script>
