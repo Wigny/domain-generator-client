@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="slogan" class="text-center">
-      <h1>Name Generator</h1>
+      <h1>Domain Generator</h1>
       <br />
       <h6 class="text-secondary">Gerador de nomes utilizando Vue.JS, GraphQL, e quem sabe Node</h6>
     </div>
